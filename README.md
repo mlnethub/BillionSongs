@@ -1,9 +1,19 @@
+# Billion Songs, AI-powered song lyrics generator
+
+[Generate a song](http://billion.dev.losttech.software:2095/)
+
+> NOTE: this repository has git submodules. So clone with --recurse-submodules.
+> Learn about them [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+
+See the blog post
+[Writing billion songs with C# and Deep Learning](https://habr.com/post/453232/)
+for a detailed explanation how it works.
+
 This project mainly serves as a demonstration of
 [Gradient](https://losttech.software/gradient.html),
 our TensorFlow binding for C# and other .NET languages.
 
-Development instance can be accessed here:
-[Billion Songs Dev](http://billion.dev.losttech.software:2095/).
+[Other Gradient samples](https://github.com/losttech/Gradient-Samples).
 
 # What is it, and how does it work?
 
@@ -22,8 +32,7 @@ There is also [PregeneratedSongProvider](Web/PregeneratedSongProvider.cs),
 which continuously creates new texts in the background to ensure clicking 
 "Make Random" button gives an instant result.
 
-> NOTE: this repository has git submodules. So clone with --recurse-submodules.
-> Learn about them [here](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
+Detailed explanation in a [blog post](https://habr.com/post/453232/)
 
 # Prerequisites
 
