@@ -1,12 +1,12 @@
 ﻿namespace BillionSongs {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using System.Text;
-    using Gradient.Samples.GPT2;
+    using LostTech.Gradient.Samples.GPT2;
     using JetBrains.Annotations;
     using numpy;
     using Python.Runtime;
-    using SharPy.Runtime;
     using tensorflow;
     using tensorflow.train;
 
@@ -50,8 +50,8 @@
                         temperature: 1.0f,
                         topK: 40);
 
-                    var trainVars = tf.trainable_variables()
-                        .Where((dynamic var) => var.name.Contains("model"));
+                    IEnumerable<Variable> trainableVariables = tf.trainable_variables();
+                    var trainVars = trainableVariables.Where(var => var.name.Contains("model"));
                     var saver = new Saver(
                         var_list: trainVars,
                         max_to_keep: 5,
@@ -63,10 +63,10 @@
 
                     var result = new StringBuilder(this.sampleLength);
                     while (result.Length < this.sampleLength) {
-                        var @out = session.run(sampleOp, feed_dict: new PythonDict<object, object> {
+                        var @out = session.run(sampleOp, feed_dict: new Dictionary<object, object> {
                             [contextPlaceholder] = new[] { this.endOfText },
                         });
-                        string chunk = this.encoder.Decode(@out[0]);
+                        string chunk = this.encoder.Decode((ndarray<int>)@out[0]);
                         result.Append(chunk);
                     }
 

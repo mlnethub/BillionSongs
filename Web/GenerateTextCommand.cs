@@ -1,13 +1,9 @@
 ﻿namespace BillionSongs {
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
-    using System.IO;
     using System.Linq;
     using System.Text;
-    using System.Threading.Tasks;
-    using Gradient;
-    using LostTech.WhichPython;
+    using LostTech.Gradient;
     using ManyConsole.CommandLineUtils;
 
     public class GenerateTextCommand: ConsoleCommand {
@@ -21,7 +17,7 @@
             Console.OutputEncoding = Encoding.UTF8;
             GradientLog.WarningWriter = GradientLog.OutputWriter = Console.Error;
             if (!string.IsNullOrEmpty(this.CondaEnv))
-                GradientSetup.UseCondaEnvironment(this.CondaEnv);
+                GradientEngine.UseCondaEnvironment(this.CondaEnv);
 
             var generator = new Gpt2TextGenerator(
                 modelName: this.ModelName,
